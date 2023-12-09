@@ -88,7 +88,7 @@ startTime = Util.ElapsedTime;
 			ZOffsets = g.ZOffsets
 		}).Dump();
 	}
-		
+
 	var longestLoopGhost = ghosts.OrderByDescending(g => g.LoopLength).ThenBy(g => g.ZOffsets.Count()).First();
 	
 	var loopLength = longestLoopGhost.LoopLength;
@@ -114,7 +114,7 @@ startTime = Util.ElapsedTime;
 		}
 	}
 	
-	Console.WriteLine($"Challenge 8.2 - Step: {foundStep + 1}");
+	Console.WriteLine($"Challenge 8.2 - Step: {foundStep}");
 }
 (Util.ElapsedTime - startTime).Dump();
 
@@ -133,15 +133,16 @@ class Ghost
 
 	public int[] ZOffsets { get; set;}
 
-	public void ProcessMove(long step, int directionOffset, Direction position)
+	public void ProcessMove(long step, int directionOffset, Direction nextPosition)
 	{
 		if (Looped)
 		{
 			return;
 		}
-		
-		Position = position;
-		var routeStep = new RouteStep( position, directionOffset );
+
+		var routeStep = new RouteStep(Position, directionOffset);
+
+		Position = nextPosition;
 
 		if (!RouteSteps.Contains(routeStep))
 		{
