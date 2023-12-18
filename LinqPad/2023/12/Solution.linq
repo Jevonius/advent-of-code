@@ -176,7 +176,7 @@ IEnumerable<Row> GetData(int repeats)
 }
 
 record Row(string Field, List<int> Arrangement);
-record Remain(int CurrentLength, int RemainginSpringCount);
+record Remain(int CurrentLength, int RemainingSpringCount);
 
 class RowTest
 {
